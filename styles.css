@@ -19,7 +19,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 28px;
-    cursor: pointer;
+    cursor: default;
     border-radius: 8px;
     user-select: none;
 }
