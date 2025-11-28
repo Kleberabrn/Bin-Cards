@@ -1,38 +1,34 @@
-const cardValues = [1, 2, 4, 8, 16];
-let currentValues = [];
-let flipped = [false, false, false, false, false];
+// Valores fixos nas cartas, na ordem definida
+const valores = [1, 2, 4, 8, 16];
 
-function shuffleCards() {
-    currentValues = [...cardValues].sort(() => Math.random() - 0.5);
-    flipped = [false, false, false, false, false];
+// Guarda quais cartas estão viradas
+let viradas = [false, false, false, false, false];
 
+function sortear() {
+    // Sorteia frente/verso — cada carta com chance 50%
+    viradas = viradas.map(() => Math.random() < 0.5);
+
+    // Atualiza a exibição das cartas
     for (let i = 0; i < 5; i++) {
-        const card = document.getElementById("card" + (i+1));
-        card.textContent = "?";
+        const card = document.getElementById("card" + (i + 1));
+        card.textContent = viradas[i] ? valores[i] : "?";
     }
+
+    document.getElementById("resultado").textContent = "";
 }
 
-function flipCard(i) {
-    const card = document.getElementById("card" + i);
+function verificar() {
+    const entrada = parseInt(document.getElementById("sum-input").value);
 
-    if (flipped[i-1]) {
-        card.textContent = "?";
-        flipped[i-1] = false;
+    // Soma correta das cartas viradas
+    const somaCorreta = valores
+        .filter((v, i) => viradas[i])
+        .reduce((acc, val) => acc + val, 0);
+
+    if (entrada === somaCorreta) {
+        document.getElementById("resultado").textContent = "Correto!";
     } else {
-        card.textContent = currentValues[i-1];
-        flipped[i-1] = true;
-    }
-}
-
-function checkSum() {
-    const user = parseInt(document.getElementById("sum-input").value);
-    const realSum = currentValues
-        .filter((v, i) => flipped[i])
-        .reduce((a, b) => a + b, 0);
-
-    if (user === realSum) {
-        document.getElementById("result").textContent = "Correto!";
-    } else {
-        document.getElementById("result").textContent = "Incorreto. A soma correta é: " + realSum;
+        document.getElementById("resultado").textContent =
+            "Incorreto! Soma correta: " + somaCorreta;
     }
 }
