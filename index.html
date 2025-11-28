@@ -3,31 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo das Cartas</title>
+    <title>Jogo de Cartas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <h1>Jogo das Cartas</h1>
 
     <div id="cards-container">
-        <div class="card" id="card1">?</div>
-        <div class="card" id="card2">?</div>
-        <div class="card" id="card3">?</div>
-        <div class="card" id="card4">?</div>
-        <div class="card" id="card5">?</div>
+        <div class="card-wrapper">
+            <div class="card" id="card1" onclick="flipCard(1)">?</div>
+            <div class="binary-digit" id="binary1">0</div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card" id="card2" onclick="flipCard(2)">?</div>
+            <div class="binary-digit" id="binary2">0</div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card" id="card3" onclick="flipCard(3)">?</div>
+            <div class="binary-digit" id="binary3">0</div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card" id="card4" onclick="flipCard(4)">?</div>
+            <div class="binary-digit" id="binary4">0</div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card" id="card5" onclick="flipCard(5)">?</div>
+            <div class="binary-digit" id="binary5">0</div>
+        </div>
     </div>
 
-    <button onclick="sortear()">Sortear cartas</button>
+    <button onclick="shuffleCards()">Sortear cartas</button>
 
     <div id="sum-container">
         <input type="number" id="sum-input" placeholder="Digite a soma das cartas viradas">
-        <button onclick="verificar()">Verificar Soma</button>
+        <button onclick="checkSum()">Verificar Soma</button>
     </div>
 
-    <p id="resultado"></p>
+    <p id="result"></p>
 
     <script src="script.js"></script>
-
 </body>
 </html>
